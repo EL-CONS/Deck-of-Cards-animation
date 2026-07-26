@@ -42,6 +42,7 @@
 
 
 <script>
+    document.getElementById('radio0').checked = true;
     const cardPool = [
         /* 5 Star Cards */
         { img: "var(--img-cons)", tier: "tier-5" },
@@ -108,18 +109,23 @@
 
     
 
-    
+
     const deckContainer = document.querySelector('.deck-container');
     const radios = document.querySelectorAll('input[type="radio"]');
+    const rerollBtn = document.getElementById('reroll-button');
 
-    
     radios.forEach(radio => {
-        radio.addEventListener('change', () => {
+        radio.addEventListener('change', (e) => {
             deckContainer.style.pointerEvents = 'none';
             
             setTimeout(() => {
                 deckContainer.style.pointerEvents = 'auto';
             }, 1200); 
+
+            /* Reveal button when the 6th card is drawn */
+            if (e.target.id === 'radio6') {
+                rerollBtn.classList.add('visible');
+            }
         });
     });
 </script>

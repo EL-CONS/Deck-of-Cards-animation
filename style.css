@@ -10,6 +10,9 @@ body {
     overscroll-behavior: none;
 }
 
+
+
+
 #reroll-button {
     position: absolute;
     bottom: 30px;
@@ -22,11 +25,28 @@ body {
     border-radius: 8px;
     cursor: pointer;
     z-index: 100; 
+
+    /* Hide and disable initially */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease-in-out; /* Smooth fade-in [aparición gradual] */
 }
 
 #reroll-button:hover {
     background-color: #555;
 }
+
+/* Class applied by JavaScript to reveal the button */
+#reroll-button.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+
+
+
+
 
 
 input[type="radio"] {
