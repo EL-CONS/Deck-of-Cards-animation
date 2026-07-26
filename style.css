@@ -202,6 +202,12 @@ input[type="radio"] {
     --img-chofis: url('imgs/chofis.png');
     --img-carlos: url('imgs/carlos.png');
     --img-coquin: url('imgs/coquin.png');
+    --img-cesar: url('imgs/cesar.png');
+    --img-horacio: url('imgs/horacio.png');
+    --img-owen: url('imgs/owen.png');
+    --img-joan: url('imgs/joan.png');
+    --img-borange: url('imgs/borange.png');
+
 
     /* cuatro estrellas*/
     --img-error-de-tipo: url('imgs/error de tipo.png');
