@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base64 Preview</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <input type="radio" name="carousel" id="radio0" checked>
+    <input type="radio" name="carousel" id="radio1">
+    <input type="radio" name="carousel" id="radio2">
+    <input type="radio" name="carousel" id="radio3">
+    <input type="radio" name="carousel" id="radio4">
+    <input type="radio" name="carousel" id="radio5">
+    <input type="radio" name="carousel" id="radio6">
+
+    <div class="deck-container">
+        <div class="card_back" id="card7"><p></p></div>    
+        
+        <div class="card" id="card6"><p></p></div>
+        <div class="card" id="card5"><p></p></div>
+        <div class="card" id="card4"><p></p></div>
+        <div class="card" id="card3"><p></p></div>
+        <div class="card" id="card2"><p></p></div>
+        <div class="card" id="card1"><p></p></div>
+
+        <label for="radio1" class="click-area" id="area0"></label>
+        <label for="radio2" class="click-area" id="area1"></label>
+        <label for="radio3" class="click-area" id="area2"></label>
+        <label for="radio4" class="click-area" id="area3"></label>
+        <label for="radio5" class="click-area" id="area4"></label> 
+        <label for="radio6" class="click-area" id="area5"></label> 
+        <label for="radio0" class="click-area" id="area6"></label> 
+    </div>
+
+    
+
+    <button id="reroll-button" onclick="location.reload()">Reroll Cards</button>
+
+
+
+<script>
+    const cardPool = [
+        /* 5 Star Cards */
+        { img: "var(--img-cons)", tier: "tier-5" },
+        { img: "var(--img-chofis)", tier: "tier-5" },
+        { img: "var(--img-carlos)", tier: "tier-5" },
+        { img: "var(--img-coquin)", tier: "tier-5" },
+        
+        /* 4 Star Cards */
+        { img: "var(--img-error-de-tipo)", tier: "tier-4" },
+        { img: "var(--img-inyeccion-sql)", tier: "tier-4" },
+        { img: "var(--img-out-of-bounds)", tier: "tier-4" },
+        { img: "var(--img-sytanx-error)", tier: "tier-4" },
+
+        /* 3 Star Cards */
+        { img: "var(--img-cplusplus)", tier: "tier-3" },
+        { img: "var(--img-java)", tier: "tier-3" },
+        { img: "var(--img-python)", tier: "tier-3" },
+        { img: "var(--img-bash)", tier: "tier-3" }
+    ];
+
+    function rollRarity() {
+        const rand = Math.random() * 100; 
+        
+        if (rand <= 10) {
+            return "tier-5"; 
+        }
+        else if (rand <= 40) {
+            return "tier-4"; 
+        }
+        else {
+            return "tier-3"; 
+        }
+    }
+
+    const drawnCards = [];
+    for (let i = 0; i < 6; i++) {
+        const targetTier = rollRarity();
+        
+        const availableCards = cardPool.filter(card => card.tier === targetTier);
+        
+        if (availableCards.length === 0) {
+            console.warn(`No cards found for ${targetTier}. Defaulting to tier-3.`);
+            availableCards.push(...cardPool.filter(card => card.tier === "tier-3"));
+        }
+        
+        const randomIndex = Math.floor(Math.random() * availableCards.length);
+        drawnCards.push(availableCards[randomIndex]);
+    }
+
+    drawnCards.forEach((cardData, index) => {
+        const cardElement = document.getElementById(`card${6 - index}`); 
+        
+        if (cardElement && cardData) {
+            cardElement.classList.remove('tier-3', 'tier-4', 'tier-5');
+            cardElement.classList.add(cardData.tier);
+            cardElement.style.backgroundImage = cardData.img;
+        }
+    });
+</script>
+</body>
+</html>

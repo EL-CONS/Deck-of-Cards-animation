@@ -1,0 +1,224 @@
+body {
+    height: 100dvh;
+    width: 100dvw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #090600;
+    margin: 0;
+    overflow: hidden;
+}
+
+#reroll-button {
+    position: absolute;
+    bottom: 30px;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #000000;
+    color: white;
+    border: 2px solid white;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 100; 
+}
+
+#reroll-button:hover {
+    background-color: #555;
+}
+
+
+input[type="radio"] {
+    display: none !important; 
+}
+
+.deck-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.click-area {
+    display: none; 
+    position: absolute;
+    height: 50dvh; 
+    aspect-ratio: 150 / 220;
+    z-index: 10; 
+    cursor: pointer;
+}
+
+#radio0:checked ~ .deck-container #area0,
+#radio1:checked ~ .deck-container #area1,
+#radio2:checked ~ .deck-container #area2,
+#radio3:checked ~ .deck-container #area3,
+#radio4:checked ~ .deck-container #area4,
+#radio5:checked ~ .deck-container #area5,
+#radio6:checked ~ .deck-container #area6
+
+{
+    display: block;
+}
+
+.card, .card_back {
+    position: absolute;
+    height: 50dvh; 
+    aspect-ratio: 150 / 220;
+    border: 2px solid #333;
+    border-radius: 8px;
+    box-sizing: border-box;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.card {
+    background-color: lightgray;
+    transform: translate(5px, 5px) rotate(2deg);
+    z-index: 1;
+    transition: transform 0.5s ease-in-out, z-index 0s 0.25s, filter 0.5s;
+}
+
+.card_back {
+    background-color: rgb(92, 22, 2);
+    background-image: var(--img-cover);
+    z-index: 2;
+    transform: translate(5px, 5px) rotate(2deg);
+}
+
+
+
+#radio1:checked ~ .deck-container #card1,
+#radio2:checked ~ .deck-container #card2,
+#radio3:checked ~ .deck-container #card3,
+#radio4:checked ~ .deck-container #card4,
+#radio5:checked ~ .deck-container #card5,
+#radio6:checked ~ .deck-container #card6 {
+    transform: translate(-15px, -25px) rotate(-2deg);
+    z-index: 3;
+    animation: drawCard 0.6s ease-in-out forwards;
+    transition: none; 
+}
+
+.card::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4px; 
+    height: 4px; 
+    border-radius: 50%;
+    background: transparent;
+    pointer-events: none;
+    z-index: 10;
+    opacity: 0;
+}
+
+
+
+@keyframes rotateBeams {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200vmax; 
+    height: 200vmax;
+    
+    
+    background: repeating-conic-gradient(
+        from 0deg,
+        transparent 0deg 15deg,
+        rgba(255, 215, 0, 0.5) 15deg 30deg 
+    );
+    
+    transform: translate(-50%, -50%) rotate(0deg);
+    pointer-events: none;
+    opacity: 0;
+ 
+    z-index: -1;  
+    -webkit-mask-image: radial-gradient(circle, transparent 5%, rgb(0, 0, 0) 50%);
+    mask-image: radial-gradient(circle, transparent 5%, black 50%);
+}
+
+.tier-5 {
+    overflow: visible !important; 
+}
+
+
+#radio1:checked ~ .deck-container #card1.tier-5::before,
+#radio2:checked ~ .deck-container #card2.tier-5::before,
+#radio3:checked ~ .deck-container #card3.tier-5::before,
+#radio4:checked ~ .deck-container #card4.tier-5::before,
+#radio5:checked ~ .deck-container #card5.tier-5::before,
+#radio6:checked ~ .deck-container #card6.tier-5::before {
+
+    animation: 
+        fadeIn 0.5s ease-in 0.2s forwards, 
+        rotateBeams 15s linear infinite;
+}
+
+
+
+
+
+
+
+
+
+@keyframes drawCard {
+    0% { 
+        transform: translate(5px, 5px) rotate(2deg); 
+        z-index: 1;
+    }
+    50% { 
+        transform: translate(230px, -150px) rotate(25deg); 
+        z-index: 3;
+    }  
+    100% { 
+        transform: translate(-15px, -25px) rotate(-2deg); 
+        z-index: 3;
+    }
+}
+
+/* Define your Base64 images here at the top or bottom to keep things organized */
+:root {
+    /* Replace the fake data with your actual Base64 strings */
+    --card-height: 220px;
+    --card-width: 150px;
+
+    --img-cover: url('imgs/back.png');
+
+    /* cinco estrellas*/
+    --img-cons: url('imgs/cons.png');
+    --img-chofis: url('imgs/chofis.png');
+    --img-carlos: url('imgs/carlos.png');
+    --img-coquin: url('imgs/coquin.png');
+
+    /* cuatro estrellas*/
+    --img-error-de-tipo: url('imgs/error de tipo.png');
+    --img-inyeccion-sql: url('imgs/inyeccion sql.png');
+    --img-out-of-bounds: url('imgs/out of bounds.png');
+    --img-sytanx-error: url('imgs/syntax error.png');
+
+
+
+
+    /* tres estrellas*/
+    --img-cplusplus: url('imgs/c++.png');
+    --img-java: url('imgs/java.png');
+    --img-python: url('imgs/python.png');
+    --img-bash: url('imgs/bash.png');
+
+
+
+    
+}
