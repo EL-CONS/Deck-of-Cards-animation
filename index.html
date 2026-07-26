@@ -81,6 +81,7 @@
         }
     }
 
+  
     const drawnCards = [];
     for (let i = 0; i < 6; i++) {
         const targetTier = rollRarity();
@@ -102,8 +103,22 @@
         if (cardElement && cardData) {
             cardElement.classList.remove('tier-3', 'tier-4', 'tier-5');
             cardElement.classList.add(cardData.tier);
-            cardElement.style.backgroundImage = cardData.img;
-        }
+            cardElement.style.setProperty('--card-bg', cardData.img);        }
+    });
+
+    
+    const deckContainer = document.querySelector('.deck-container');
+    const radios = document.querySelectorAll('input[type="radio"]');
+
+    
+    radios.forEach(radio => {
+        radio.addEventListener('change', () => {
+            deckContainer.style.pointerEvents = 'none';
+            
+            setTimeout(() => {
+                deckContainer.style.pointerEvents = 'auto';
+            }, 1200); 
+        });
     });
 </script>
 </body>

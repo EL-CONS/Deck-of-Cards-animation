@@ -1,12 +1,13 @@
 body {
     height: 100dvh;
-    width: 100dvw;
+    
     display: flex;
     justify-content: center;
     align-items: center;
     background: #090600;
     margin: 0;
     overflow: hidden;
+    overscroll-behavior: none;
 }
 
 #reroll-button {
@@ -59,31 +60,64 @@ input[type="radio"] {
     display: block;
 }
 
+
+
+
+
+
+
+
 .card, .card_back {
     position: absolute;
     height: 50dvh; 
     aspect-ratio: 150 / 220;
-    border: 2px solid #333;
     border-radius: 8px;
+    background: transparent !important;
+    border: none !important;
     box-sizing: border-box;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
 }
 
 .card {
-    background-color: lightgray;
     transform: translate(5px, 5px) rotate(2deg);
     z-index: 1;
     transition: transform 0.5s ease-in-out, z-index 0s 0.25s, filter 0.5s;
 }
 
 .card_back {
-    background-color: rgb(92, 22, 2);
-    background-image: var(--img-cover);
     z-index: 2;
     transform: translate(5px, 5px) rotate(2deg);
 }
+
+
+.card p, .card_back p {
+    position: absolute;
+    inset: 0; 
+    margin: 0;
+    border: transparent;
+
+
+    border-radius: inherit;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 5; 
+}
+
+
+.card_back p {
+    background-color: rgb(92, 22, 2);
+    background-image: var(--img-cover);
+}
+
+.card p {
+    background-color: lightgray;
+    background-image: var(--card-bg);
+}
+
+
+
+
+
 
 
 
