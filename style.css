@@ -1,15 +1,19 @@
+html,body{
+    -webkit-user-select: none;
+    user-select: none;
+    overflow: hidden;
+    overscroll-behavior: none;
+}
+
 body {
     height: 100dvh;
-    
     display: flex;
     justify-content: center;
     align-items: center;
     background: #090600;
     margin: 0;
-    overflow: hidden;
-    overscroll-behavior: none;
+    
 }
-
 
 
 
@@ -66,6 +70,7 @@ input[type="radio"] {
     aspect-ratio: 150 / 220;
     z-index: 10; 
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 
 #radio0:checked ~ .deck-container #area0,
