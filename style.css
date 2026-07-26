@@ -29,7 +29,6 @@ body {
     border-radius: 8px;
     cursor: pointer;
     z-index: 100; 
-    font-family: "Indie Flower", cursive, sans-serif;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.5s ease-in-out; 
@@ -234,7 +233,6 @@ input[type="radio"] {
     font-weight: bold;
     color: white;
     font-family: monospace;
-    font-family: "Indie Flower", cursive, sans-serif;
     z-index: 100;
     pointer-events: none; 
 }
