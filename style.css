@@ -24,7 +24,7 @@ body {
 
 #card-counter {
     position: absolute;
-    top: 40px;
+    bottom: 30px;
     font-size: 32px; 
     font-weight: bold;
     color: white;
@@ -220,7 +220,7 @@ input[type="radio"] {
 
 #summary-container {
     position: absolute;
-    bottom: 90px;
+    top: 50px;
     display: flex;
     justify-content: center;
     gap: 8px;
