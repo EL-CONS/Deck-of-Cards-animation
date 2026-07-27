@@ -1,28 +1,50 @@
-html,body{
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    overscroll-behavior: none; 
     -webkit-user-select: none;
     user-select: none;
-    overflow: hidden;
-    overscroll-behavior: none;
 }
 
 body {
-    height: 100dvh;
     display: flex;
     justify-content: center;
     align-items: center;
     background: #090600;
-    margin: 0;
-    
+    height: 100dvh;
 }
 
 
+/*--------------------------------------------*/
+/*-------------CONTEO DE CARTAS---------------*/
+/*--------------------------------------------*/
+
+#card-counter {
+    position: absolute;
+    top: 40px;
+    font-size: 32px; 
+    font-weight: bold;
+    color: white;
+    font-family: "Comic Sans MS", cursive;
+    z-index: 100;
+    pointer-events: none; 
+}
+
+
+/*--------------------------------------------*/
+/*---------------RERROL BUTTON----------------*/
+/*--------------------------------------------*/
 
 #reroll-button {
     position: absolute;
     bottom: 30px;
     padding: 12px 24px;
-    font-size: 20px;
+    font-size: 24px; 
     font-weight: bold;
+    font-family: "Comic Sans MS", cursive;
     background-color: #000000;
     color: white;
     border: 2px solid white;
@@ -38,18 +60,10 @@ body {
     background-color: #555;
 }
 
-
 #reroll-button.visible {
     opacity: 1;
     pointer-events: auto;
 }
-
-
-
-
-
-
-
 
 input[type="radio"] {
     display: none !important; 
@@ -59,6 +73,17 @@ input[type="radio"] {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+@keyframes tiltDeck {
+    0% { transform: rotate(0deg); }
+    30% { transform: rotate(-4deg); }
+    70% { transform: rotate(4deg); }
+    100% { transform: rotate(0deg); }
+}
+
+.tilt-effect {
+    animation: tiltDeck 0.3s ease-in-out;
 }
 
 .click-area {
@@ -77,73 +102,40 @@ input[type="radio"] {
 #radio3:checked ~ .deck-container #area3,
 #radio4:checked ~ .deck-container #area4,
 #radio5:checked ~ .deck-container #area5,
-#radio6:checked ~ .deck-container #area6
-
-{
+#radio6:checked ~ .deck-container #area6 {
     display: block;
 }
 
 
 
-
-
-
-
-
+/*--------------------------------------------*/
+/*------------------CARTAS--------------------*/
+/*--------------------------------------------*/
 .card, .card_back {
     position: absolute;
     height: 50dvh; 
     aspect-ratio: 150 / 220;
-    border-radius: 8px;
-    background: transparent !important;
-    border: none !important;
+    border-radius: 20px;
     box-sizing: border-box;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; 
+    animation: wiggleBorder 2s infinite ease-in-out;
 }
 
 .card {
+    background-color: lightgray;
     transform: translate(5px, 5px) rotate(2deg);
     z-index: 1;
     transition: transform 0.5s ease-in-out, z-index 0s 0.25s, filter 0.5s;
 }
 
 .card_back {
+    background-color: rgb(92, 22, 2);
+    background-image: var(--img-cover);
     z-index: 2;
     transform: translate(5px, 5px) rotate(2deg);
 }
-
-
-.card p, .card_back p {
-    position: absolute;
-    inset: 0; 
-    margin: 0;
-
-    
-
-
-    border-radius: inherit;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: 5; 
-}
-
-
-.card_back p {
-    background-color: rgb(92, 22, 2);
-    background-image: var(--img-cover);
-}
-
-.card p {
-    background-color: lightgray;
-    background-image: var(--card-bg);
-}
-
-
-
-
-
-
-
 
 #radio1:checked ~ .deck-container #card1,
 #radio2:checked ~ .deck-container #card2,
@@ -155,6 +147,12 @@ input[type="radio"] {
     z-index: 3;
     animation: drawCard 0.6s ease-in-out forwards;
     transition: none; 
+}
+
+@keyframes drawCard {
+    0% { transform: translate(5px, 5px) rotate(2deg); z-index: 1; }
+    50% { transform: translate(230px, -150px) rotate(25deg); z-index: 3; }  
+    100% { transform: translate(-15px, -25px) rotate(-2deg); z-index: 3; }
 }
 
 .card::after {
@@ -170,8 +168,6 @@ input[type="radio"] {
     z-index: 10;
     opacity: 0;
 }
-
-
 
 @keyframes rotateBeams {
     0% { transform: translate(-50%, -50%) rotate(0deg); }
@@ -190,18 +186,14 @@ input[type="radio"] {
     left: 50%;
     width: 200vmax; 
     height: 200vmax;
-    
-    
     background: repeating-conic-gradient(
         from 0deg,
         transparent 0deg 15deg,
         rgba(255, 215, 0, 0.5) 15deg 30deg 
     );
-    
     transform: translate(-50%, -50%) rotate(0deg);
     pointer-events: none;
     opacity: 0;
- 
     z-index: -1;  
     -webkit-mask-image: radial-gradient(circle, transparent 5%, rgb(0, 0, 0) 50%);
     mask-image: radial-gradient(circle, transparent 5%, black 50%);
@@ -211,62 +203,95 @@ input[type="radio"] {
     overflow: visible !important; 
 }
 
-
 #radio1:checked ~ .deck-container #card1.tier-5::before,
 #radio2:checked ~ .deck-container #card2.tier-5::before,
 #radio3:checked ~ .deck-container #card3.tier-5::before,
 #radio4:checked ~ .deck-container #card4.tier-5::before,
 #radio5:checked ~ .deck-container #card5.tier-5::before,
 #radio6:checked ~ .deck-container #card6.tier-5::before {
-
-    animation: 
-        fadeIn 0.5s ease-in 0.2s forwards, 
-        rotateBeams 15s linear infinite;
+    animation: fadeIn 0.5s ease-in 0.2s forwards, rotateBeams 15s linear infinite;
 }
 
 
 
-#card-counter {
+/*--------------------------------------------*/
+/*----------------CARD SUMMARY----------------*/
+/*--------------------------------------------*/
+
+#summary-container {
     position: absolute;
-    bottom: 100px;
-    font-size: 24px;
-    font-weight: bold;
-    color: white;
-    font-family: monospace;
-    z-index: 100;
-    pointer-events: none; 
+    bottom: 90px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease-in-out 0.8s; 
+    z-index: 50;
+}
+
+#radio6:checked ~ #summary-container {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+/*--------------------------------------------*/
+/*----------------MINICARDS-------------------*/
+/*--------------------------------------------*/
+.mini-card {
+    position: relative; 
+    height: 80px; 
+    aspect-ratio: 150 / 220;
+    background-size: cover;
+    background-position: center;
+    border: 2px solid #333;
+    border-radius: 4px;
+    background-color: lightgray;
+}
+
+
+.mini-card.tier-5 {
+    overflow: visible;
+}
+
+
+.mini-card.tier-5::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150px; 
+    height: 150px;
+    border-radius: 50%; 
+    background: repeating-conic-gradient(
+        from 0deg,
+        transparent 0deg 15deg,
+        rgba(255, 215, 0, 0.5) 15deg 30deg 
+    );
+    transform: translate(-50%, -50%) rotate(0deg);
+    pointer-events: none;
+    z-index: -1;  
+    
+    -webkit-mask-image: radial-gradient(circle, transparent 5%, black 40%, transparent 70%);
+    mask-image: radial-gradient(circle, transparent 5%, black 40%, transparent 70%);
+    
+    animation: rotateBeams 15s linear infinite;
 }
 
 
 
-
-
-
-
-@keyframes drawCard {
-    0% { 
-        transform: translate(5px, 5px) rotate(2deg); 
-        z-index: 1;
-    }
-    50% { 
-        transform: translate(230px, -150px) rotate(25deg); 
-        z-index: 3;
-    }  
-    100% { 
-        transform: translate(-15px, -25px) rotate(-2deg); 
-        z-index: 3;
-    }
-}
-
-/* Define your Base64 images here at the top or bottom to keep things organized */
+/*--------------------------------------------*/
+/*----------------VARIABLES-------------------*/
+/*--------------------------------------------*/
 :root {
-    /* Replace the fake data with your actual Base64 strings */
     --card-height: 220px;
     --card-width: 150px;
 
     --img-cover: url('imgs/back.png');
 
-    /* cinco estrellas*/
+    /*5 STAR*/
     --img-cons: url('imgs/cons.png');
     --img-chofis: url('imgs/chofis.png');
     --img-carlos: url('imgs/carlos.png');
@@ -274,26 +299,16 @@ input[type="radio"] {
     --img-cesar: url('imgs/cesar.png');
     --img-horacio: url('imgs/horacio.png');
     --img-owen: url('imgs/owen.png');
-    --img-joan: url('imgs/joan.png');
-    --img-borange: url('imgs/borange.png');
 
-
-    /* cuatro estrellas*/
+    /*4 STAR*/
     --img-error-de-tipo: url('imgs/error de tipo.png');
     --img-inyeccion-sql: url('imgs/inyeccion sql.png');
     --img-out-of-bounds: url('imgs/out of bounds.png');
     --img-sytanx-error: url('imgs/syntax error.png');
-
-
-
-
-    /* tres estrellas*/
+    
+    /*3 STAR*/
     --img-cplusplus: url('imgs/c++.png');
     --img-java: url('imgs/java.png');
     --img-python: url('imgs/python.png');
     --img-bash: url('imgs/bash.png');
-
-
-
-    
 }
