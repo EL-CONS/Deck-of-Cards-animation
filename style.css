@@ -177,8 +177,8 @@ input[type="radio"] {
 }
 
 @keyframes rotateBeams {
-    0% { transform: translate(-50%, -50%) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg); }
+    0% { transform: translate3d(-50%, -50%, 0) rotate(0deg); }
+    100% { transform: translate3d(-50%, -50%, 0) rotate(360deg); }
 }
 
 @keyframes fadeIn {
@@ -198,12 +198,13 @@ input[type="radio"] {
         transparent 0deg 15deg,
         rgba(255, 215, 0, 0.5) 15deg 30deg 
     );
-    transform: translate(-50%, -50%) rotate(0deg);
+    transform: translate3d(-50%, -50%, 0) rotate(0deg);
     pointer-events: none;
     opacity: 0;
     z-index: -1;  
     -webkit-mask-image: radial-gradient(circle, transparent 5%, rgb(0, 0, 0) 50%);
     mask-image: radial-gradient(circle, transparent 5%, black 50%);
+    will-change: transform;
 }
 
 .tier-5 {
@@ -277,7 +278,7 @@ input[type="radio"] {
         transparent 0deg 15deg,
         rgba(255, 215, 0, 0.5) 15deg 30deg 
     );
-    transform: translate(-50%, -50%) rotate(0deg);
+    transform: translate3d(-50%, -50%, 0) rotate(0deg);
     pointer-events: none;
     z-index: -1;  
     
@@ -285,6 +286,7 @@ input[type="radio"] {
     mask-image: radial-gradient(circle, transparent 5%, black 40%, transparent 70%);
     
     animation: rotateBeams 15s linear infinite;
+    will-change: transform;
 }
 
 
