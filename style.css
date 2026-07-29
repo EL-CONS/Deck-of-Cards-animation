@@ -70,6 +70,9 @@ input[type="radio"] {
 }
 
 .deck-container {
+    position: relative;
+    height: 50dvh; 
+    aspect-ratio: 150 / 220;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -89,8 +92,10 @@ input[type="radio"] {
 .click-area {
     display: none; 
     position: absolute;
-    height: 50dvh; 
-    aspect-ratio: 150 / 220;
+    top:0;
+    left:0;
+    height: 100%; 
+    width: 100%;
     z-index: 10; 
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
@@ -113,8 +118,10 @@ input[type="radio"] {
 /*--------------------------------------------*/
 .card, .card_back {
     position: absolute;
-    height: 50dvh; 
-    aspect-ratio: 150 / 220;
+    top:0;
+    left:0;
+    height: 100%;
+    width: 100%;
     border-radius: 20px;
     box-sizing: border-box;
     background-size: cover;
