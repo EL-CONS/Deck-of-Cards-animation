@@ -17,12 +17,20 @@
     <input type="radio" name="carousel" id="radio4">
     <input type="radio" name="carousel" id="radio5">
     <input type="radio" name="carousel" id="radio6">
+    <input type="radio" name="carousel" id="radio7">
+    <input type="radio" name="carousel" id="radio8">
+    <input type="radio" name="carousel" id="radio9">
+    <input type="radio" name="carousel" id="radio10">
+    
 
-    <div id="card-counter">0/6</div>
+    <div id="card-counter">0/9</div>
 
     <div class="deck-container">
-        <div class="card_back" id="card7"><p></p></div>    
-        
+        <div class="card_back" id="card11"><p></p></div>  
+        <div class="card_back" id="card10"><p></p></div>            
+        <div class="card" id="card9"><p></p></div>
+        <div class="card" id="card8"><p></p></div>
+        <div class="card" id="card7"><p></p></div>
         <div class="card" id="card6"><p></p></div>
         <div class="card" id="card5"><p></p></div>
         <div class="card" id="card4"><p></p></div>
@@ -36,7 +44,10 @@
         <label for="radio4" class="click-area" id="area3"></label>
         <label for="radio5" class="click-area" id="area4"></label> 
         <label for="radio6" class="click-area" id="area5"></label> 
-        <label for="radio0" class="click-area" id="area6"></label> 
+        <label for="radio7" class="click-area" id="area6"></label> 
+        <label for="radio8" class="click-area" id="area7"></label> 
+        <label for="radio9" class="click-area" id="area8"></label> 
+        <label for="radio10" class="click-area" id="area9"></label> 
     </div>
 
     <!-- Mini-cards container -->
@@ -47,6 +58,9 @@
         <div class="mini-card" id="mini-card4"></div>
         <div class="mini-card" id="mini-card5"></div>
         <div class="mini-card" id="mini-card6"></div>
+        <div class="mini-card" id="mini-card7"></div>
+        <div class="mini-card" id="mini-card8"></div>
+        <div class="mini-card" id="mini-card9"></div>
     </div>
 
     <button id="reroll-button" onclick="location.reload()">Reroll Cards</button>
@@ -73,13 +87,13 @@
 
     function rollRarity() {
         const rand = Math.random() * 100; 
-        if (rand <= 10) return "tier-5"; 
+        if (rand <= 9) return "tier-5"; 
         else if (rand <= 40) return "tier-4"; 
         else return "tier-3"; 
     }
 
     const drawnCards = [];
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 9; i++) {
         const targetTier = rollRarity();
         const availableCards = cardPool.filter(card => card.tier === targetTier);
         
@@ -92,8 +106,8 @@
     }
 
     drawnCards.forEach((cardData, index) => {
-        const cardElement = document.getElementById(`card${6 - index}`); 
-        const miniCardElement = document.getElementById(`mini-card${6 - index}`); 
+        const cardElement = document.getElementById(`card${9 - index}`); 
+        const miniCardElement = document.getElementById(`mini-card${9 - index}`); 
         
         if (cardElement && cardData) {
             cardElement.classList.remove('tier-3', 'tier-4', 'tier-5');
@@ -125,13 +139,69 @@
             }, 600); 
             
             const currentDraw = e.target.id.replace('radio', '');
-            counterDisplay.textContent = `${currentDraw}/6`;
+            if(currentDraw<=9){
+                counterDisplay.textContent = `${currentDraw}/9`;
+            }
 
-            if (e.target.id === 'radio6') {
+            if (e.target.id === 'radio10') {
                 rerollBtn.classList.add('visible');
             }
         });
     });
+
+
+
+    const miniCardsList = document.querySelectorAll('.mini-card');
+
+    function unzoomAll() {
+        miniCardsList.forEach(card => card.classList.remove('zoomed'));
+    }
+
+   miniCardsList.forEach(card => {
+        card.addEventListener('click', (e) => {
+            e.stopPropagation(); 
+            
+            if (card.classList.contains('zoomed')) {
+                history.back();
+            } else {
+                const anyZoomed = document.querySelector('.mini-card.zoomed');
+                unzoomAll();
+                
+            
+                const rect = card.getBoundingClientRect();
+                const moveX = (window.innerWidth / 2) - (rect.left + rect.width / 2);
+                const moveY = (window.innerHeight * 0.50) - (rect.top + rect.height / 2); 
+                
+            
+                card.style.setProperty('--move-x', `${moveX}px`);
+                card.style.setProperty('--move-y', `${moveY}px`);
+                
+                card.classList.add('zoomed');
+                
+                if (!anyZoomed) {
+                    history.pushState({ zoom: true }, "");
+                }
+            }
+        });
+    });
+
+    
+    document.addEventListener('click', () => {
+        const anyZoomed = document.querySelector('.mini-card.zoomed');
+        if (anyZoomed) {
+
+            if (history.state && history.state.zoom) {
+                history.back(); 
+            } else {
+                unzoomAll();
+            }
+        }
+    });
+
+    window.addEventListener('popstate', () => {
+        unzoomAll();
+    });
+
 </script>
 </body>
 </html>
