@@ -1,20 +1,50 @@
 document.getElementById('radio0').checked = true;
 
     const cardPool = [
-        { img: "var(--img-cons)", tier: "tier-5" },
-        { img: "var(--img-chofis)", tier: "tier-5" },
-        { img: "var(--img-carlos)", tier: "tier-5" },
-        { img: "var(--img-coquin)", tier: "tier-5" },
+        { img: "var(--img-cons)", tier: "tier-5" ,desc:"description text",hp: 9999, atk: 9999, def: 9999, spd: 9999, ability: ""},
+        { img: "var(--img-chofis)", tier: "tier-5" ,desc:"description text",hp: 9999, atk: 9999, def: 9999, spd: 9999, ability: ""},
+        { img: "var(--img-carlos)", tier: "tier-5" ,desc:"description text",hp: 9999, atk: 9999, def: 9999, spd: 9999, ability: ""},
+        { img: "var(--img-coquin)", tier: "tier-5" ,desc:"description text",hp: 9999, atk: 9999, def: 9999, spd: 9999, ability: ""},
+        { img: "var(--img-cesar)", tier: "tier-5" ,desc:"description text",hp: 9999, atk: 9999, def: 9999, spd: 9999, ability: ""},
+        { img: "var(--img-horacio)", tier: "tier-5" ,desc:"description text",hp: 9999, atk: 9999, def: 9999, spd: 9999, ability: ""},
+        { img: "var(--img-borange)", tier: "tier-5" ,desc:"description text",hp: 9999, atk: 9999, def: 9999, spd: 9999, ability: ""},
+        { img: "var(--img-borange)", tier: "tier-5" ,desc:"description text",hp: 9999, atk: 9999, def: 9999, spd: 9999, ability: ""},
+        { img: "var(--img-joan)", tier: "tier-5" ,desc:"description text",hp: 9999, atk: 9999, def: 9999, spd: 9999, ability: ""},
+        { img: "var(--img-owen)", tier: "tier-5" ,desc:"description text",hp: 9999, atk: 9999, def: 9999, spd: 9999, ability: ""},
         
-        { img: "var(--img-error-de-tipo)", tier: "tier-4" },
-        { img: "var(--img-inyeccion-sql)", tier: "tier-4" },
-        { img: "var(--img-out-of-bounds)", tier: "tier-4" },
-        { img: "var(--img-sytanx-error)", tier: "tier-4" },
+        
+        { img: "var(--img-error-de-tipo)", tier: "tier-4" ,desc:"description text",hp: 9999, atk: 9999, def: 9999, spd: 9999, ability: "Type Coercion: Converts enemy defense to its current hp."},
+        { img: "var(--img-inyeccion-sql)", tier: "tier-4" ,desc:"Always sanitize your database inputs.",hp: 9999, atk: 9999, def: 9999, spd: 9999, ability: "Bypass: Ignores enemy shields and attacks directly."},
+        { img: "var(--img-out-of-bounds)", tier: "tier-4" ,desc:"description text",hp: 9999, atk: 9999, def: 9999, spd: 9999, ability: "Buffer Overflow: Overwrites adjacent memory, corrupting enemy stats randomly."},
+        { img: "var(--img-sytanx-error)", tier: "tier-4" ,desc:"You forgot the semicolon.",hp: 9999, atk: 9999, def: 9999, spd: 9999, ability: "Halt: Skips the enemy's next turn."},
 
-        { img: "var(--img-cplusplus)", tier: "tier-3" },
-        { img: "var(--img-java)", tier: "tier-3" },
-        { img: "var(--img-python)", tier: "tier-3" },
-        { img: "var(--img-bash)", tier: "tier-3" }
+        { img: "var(--img-cplusplus)", tier: "tier-3",desc:"Makes it harder to shoot yourself in the foot, but when you do it blows your whole leg off." ,hp: 9999, atk: 9999, def: 9999, spd: 9999, ability: "Manual Memory: High risk, high reward damage."},
+        { img: "var(--img-java)", tier: "tier-3" ,desc:"Write once, debug anywhere.",hp: 9999, atk: 9999, def: 9999, spd: 9999, ability: "Garbage Collector: Recovers 10% HP for 3 turns."},
+        { img: "var(--img-python)", tier: "tier-3" ,desc:"Executable pseudocode.",hp: 9999, atk: 9999, def: 9999, spd: 9999, ability: "Import Module: Adapts to any element."},
+        { img: "var(--img-bash)", tier: "tier-3" ,desc:"To err is human, to really foul things up requires root privileges.",hp: 9999, atk: 9999, def: 9999, spd: 9999, ability: "Pipe: Redirects an attack back to them."}
+        /* 
+        
+        // --- LENGUAJES ---
+        { img: "var(--img-javascript)", tier: "tier-3" ,desc:"Where '1' + 1 = '11' but '1' - 1 = 0.""}
+        { img: "var(--img-c)", tier: "tier-3", desc: "Playing with pointers is like juggling flaming chainsaws." },
+        { img: "var(--img-html)", tier: "tier-3", desc: "No, it is not a programming language." },
+        { img: "var(--img-php)", tier: "tier-3", desc: "A fractal of bad design, running 70% of the web." },
+        { img: "var(--img-rust)", tier: "tier-3", desc: "The compiler is your strict but loving parent." },
+        
+        // --- CONCEPTOS Y ERRORES ---
+        { img: "var(--img-strict-eq)", tier: "tier-4", desc: "== is for friends, === is for business [negocios]." },
+        { img: "var(--img-regex)", tier: "tier-4", desc: "You had a problem and used Regex. Now you have two problems." },
+        { img: "var(--img-recursion)", tier: "tier-4", desc: "To understand recursion , you must first understand recursion." },
+        { img: "var(--img-memory-leak)", tier: "tier-4", desc: "Chrome needs more RAM." },
+
+        // --- HERRAMIENTAS Y CULTURA ---
+        { img: "var(--img-stackoverflow)", tier: "tier-4", desc: "Copy-paste driven development." },
+        { img: "var(--img-git)", tier: "tier-4", desc: "In case of fire: git commit, git push, leave building." },
+        { img: "var(--img-npm)", tier: "tier-4", desc: "node_modules: The heaviest object in the known universe." },
+        { img: "var(--img-turing)", tier: "tier-4", desc: "It can compute anything, given infinite time and infinite tape."" },
+        { img: "var(--img-css)", tier: "tier-4", desc: "Centering a div: the hardest problem in computer science." }
+         */
+        
     ];
 
     function rollRarity() {
@@ -50,6 +80,16 @@ document.getElementById('radio0').checked = true;
         if (miniCardElement && cardData) {
             miniCardElement.style.backgroundImage = cardData.img;
             miniCardElement.classList.add(cardData.tier); 
+            miniCardElement.innerHTML = `
+                <div class="card-stats-side">
+                    <span>HP: ${cardData.hp} ATK: ${cardData.atk}</span>
+                    <span>DEF: ${cardData.def}</span>
+                </div>
+                <div class="card-desc-bottom">
+                    <div class="ability-text">${cardData.ability}</div>
+                    <div class="flavor-text">"${cardData.desc}"</div>
+                </div>
+            `;
         }
     });
 
@@ -102,7 +142,7 @@ document.getElementById('radio0').checked = true;
             
                 const rect = card.getBoundingClientRect();
                 const moveX = (window.innerWidth / 2) - (rect.left + rect.width / 2);
-                const moveY = (window.innerHeight * 0.50) - (rect.top + rect.height / 2); 
+                const moveY = (window.innerHeight * 0.40) - (rect.top + rect.height / 2); 
                 
             
                 card.style.setProperty('--move-x', `${moveX}px`);

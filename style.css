@@ -25,11 +25,11 @@ body {
 
 #card-counter {
     position: absolute;
-    bottom: 30px;
-    font-size: 32px;
+    bottom: 3vmax;
+    font-size: 3vh;
     font-weight: bold;
     color: white;
-    font-family: "Comic Sans MS", cursive;
+    font-family: "Comic Sans MS";
     z-index: 100;
     pointer-events: none;
 }
@@ -41,15 +41,15 @@ body {
 
 #reroll-button {
     position: absolute;
-    bottom: 30px;
-    padding: 12px 24px;
-    font-size: 24px;
+    bottom: 3vmax;
+    padding: 1vmax 2vmax;
+    font-size: 2vmax;
     font-weight: bold;
-    font-family: "Comic Sans MS", cursive;
+    font-family: "Comic Sans MS";
     background-color: #000000;
     color: white;
-    border: 2px solid white;
-    border-radius: 8px;
+    border: 0.2vmax solid white;
+    border-radius: 0.8vmax;
     cursor: pointer;
     z-index: 100;
     opacity: 0;
@@ -275,6 +275,7 @@ input[type="radio"] {
     grid-template-rows: repeat(3, 1fr);
     justify-items: center;
     align-items: center;
+    top:-5px;
     gap: 2%;
     height: 75%;
     width: 85%;
@@ -316,11 +317,10 @@ input[type="radio"] {
 /*--------------------------------------------*/
 .mini-card {
     position: relative;
-    height:15vmax;
+    height:15dvh;
     aspect-ratio: 150 / 220;
     background-size: cover;
     background-position: center;
-    border: 2px solid #333;
     border-radius: 4px;
     background-color: lightgray;
     transition: transform 0.3s ease-in-out, z-index 0s;
@@ -373,6 +373,85 @@ input[type="radio"] {
 
 
 
+
+/*--------------------------------------------*/
+/*-------------ESTADÍSTICAS (LATERAL)---------*/
+/*--------------------------------------------*/
+
+.card-stats-side {
+    position: absolute;
+    top: -20%;
+    left: 50%; 
+    
+    transform: translate3d(-50%, 0%, 1px) scale(0.3333);
+    transform-origin: top center; 
+    
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.8vh;
+    padding: 1vh;
+    border-radius: 0.5vh;
+    
+    color: #ffffff;
+    font-family: monospace;
+    font-size: 2.2vh; 
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap; 
+    
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+}
+
+/*--------------------------------------------*/
+/*-------------TEXTO DE CARTAS (ABAJO)--------*/
+/*--------------------------------------------*/
+
+.card-desc-bottom {
+    position: absolute;
+    top: 105%; 
+    left: 50%;
+    
+    transform: translate3d(-50%, 0, 1px) scale(0.3333); 
+    transform-origin: top center;
+    
+    width: 350%; 
+    padding: 1vh; 
+    border-radius: 0.5vh;
+    box-sizing: border-box;
+    
+    color: white;
+    font-family: "Comic Sans MS", cursive;
+    
+    opacity: 0; 
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+    overflow-wrap: break-word; 
+}
+
+.ability-text {
+    font-size: 2.3vh;
+    color: #ffffff; 
+    margin-bottom: 0.5vh;
+    font-weight: bold;
+    text-align: left;
+}
+
+.flavor-text {
+    font-style: italic;
+    font-size: 2vh;
+    color: #cccccc;
+    border-top: 0.1vh solid #555;
+    padding-top: 0.5vh;
+    text-align: center;
+}
+.mini-card.zoomed .card-stats-side,
+.mini-card.zoomed .card-desc-bottom {
+    opacity: 1;
+}
+
 /*--------------------------------------------*/
 /*----------------VARIABLES-------------------*/
 /*--------------------------------------------*/
@@ -390,6 +469,8 @@ input[type="radio"] {
     --img-cesar: url('imgs/cesar.png');
     --img-horacio: url('imgs/horacio.png');
     --img-owen: url('imgs/owen.png');
+    --img-joan: url('imgs/joan.png');
+    --img-borange: url('imgs/borange.png');
 
     /*4 STAR*/
     --img-error-de-tipo: url('imgs/error de tipo.png');
