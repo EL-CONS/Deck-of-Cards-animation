@@ -285,6 +285,24 @@ input[type="radio"] {
     z-index: 50;
 }
 
+#summary-container::before {
+    content:"";
+    position: fixed;
+    top: 0;
+    left:0;
+    width: 100vw;
+    height: 1000vh;
+    background-color: rgba(0, 0, 0,0.85);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 90;
+}
+
+#summary-container:has(.zoomed)::before {
+    opacity: 1;
+}
+
 #radio10:checked~#summary-container {
     opacity: 1;
     pointer-events: auto;
@@ -308,7 +326,6 @@ input[type="radio"] {
     transition: transform 0.3s ease-in-out, z-index 0s;
     transform-style: preserve-3d;
     z-index: 1;
-
 }
 
 @keyframes mini-card-zoom {
@@ -340,7 +357,7 @@ input[type="radio"] {
     left: 50%;
     width: 25vmax;
     height: 25vmax;
-   border-radius: 50%;
+    border-radius: 50%;
     background: repeating-conic-gradient(from 0deg,
             transparent 0deg 15deg,
             rgba(255, 217, 0, 0.943) 15deg 30deg);
