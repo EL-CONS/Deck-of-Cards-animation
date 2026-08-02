@@ -272,7 +272,7 @@ input[type="radio"] {
     position: absolute;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3 1fr);
+    grid-template-rows: repeat(3, 1fr);
     justify-items: center;
     align-items: center;
     gap: 2%;
@@ -340,10 +340,10 @@ input[type="radio"] {
     left: 50%;
     width: 25vmax;
     height: 25vmax;
-    border-radius: 50%;
+   border-radius: 50%;
     background: repeating-conic-gradient(from 0deg,
             transparent 0deg 15deg,
-            rgba(255, 217, 0, 0.943)5deg 30deg);
+            rgba(255, 217, 0, 0.943) 15deg 30deg);
     transform: translate3d(-50%, -50%, -1px) rotate(0deg);
     z-index: -1;
 
