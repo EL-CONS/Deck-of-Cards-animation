@@ -305,7 +305,7 @@ input[type="radio"] {
     opacity: 1;
 }
 
-#radio0:checked~#summary-container {
+#radio10:checked~#summary-container {
     opacity: 1;
     pointer-events: auto;
     
