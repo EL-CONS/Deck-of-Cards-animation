@@ -209,11 +209,11 @@ input[type="radio"] {
 
 @keyframes rotateBeams {
     0% {
-        transform: translate3d(-50%, -50%, -1px) rotate(0deg);
+        transform: translate3d(-50%, -50%, -1px) rotate(0deg) scale(6);
     }
 
     100% {
-        transform: translate3d(-50%, -50%, -1px) rotate(360deg);
+        transform: translate3d(-50%, -50%, -1px) rotate(360deg) scale(6);
     }
 }
 
@@ -232,12 +232,13 @@ input[type="radio"] {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 200vmax;
-    height: 200vmax;
+    width: 25vmax;
+    height: 25vmax;
+    
     background: repeating-conic-gradient(from 0deg,
             transparent 0deg 15deg,
             rgba(255, 215, 0, 0.5) 15deg 30deg);
-    transform: translate3d(-50%, -50%, -1px) rotate(0deg);
+    transform: translate3d(-50%, -50%, -1px) rotate(0deg) scale(6);
     pointer-events: none;
     opacity: 0;
     z-index: -1;
@@ -304,7 +305,7 @@ input[type="radio"] {
     opacity: 1;
 }
 
-#radio10:checked~#summary-container {
+#radio0:checked~#summary-container {
     opacity: 1;
     pointer-events: auto;
     
@@ -355,13 +356,13 @@ input[type="radio"] {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 25vmax;
-    height: 25vmax;
+    width: 3.5vh;
+    height: 3.5vh;
     border-radius: 50%;
     background: repeating-conic-gradient(from 0deg,
             transparent 0deg 15deg,
             rgba(255, 217, 0, 0.943) 15deg 30deg);
-    transform: translate3d(-50%, -50%, -1px) rotate(0deg);
+    transform: translate3d(-50%, -50%, -1px) rotate(0deg) ;
     z-index: -1;
 
     -webkit-mask-image: radial-gradient(circle, transparent 5%, black 40%, transparent 70%);
